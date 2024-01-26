@@ -1,0 +1,60 @@
+[
+  {
+    "namespace": "experiments.urlbar",
+    "description": "APIs supporting urlbar experiments",
+    "types": [
+      {
+        "id": "searchResults",
+        "type": "object",
+        "description": "Titles and Urls returned from urlbar search",
+        "properties": {
+          "titles": {
+            "description": "list of titles",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "urls": {
+            "description": "list of corresponding urls",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    ],
+    "functions": [
+            {
+        "name": "initURLbarListener",
+        "type": "function",
+        "async": true,
+        "description": "Sets listener to watch for urlbar menupopup closing.",
+        "parameters": []
+      },
+            {
+        "name": "uninitURLbarListener",
+        "type": "function",
+        "async": true,
+        "description": "Removes listener to watch for urlbar menupopup closing.",
+        "parameters": []
+      },
+            {
+        "name": "getResults",
+        "type": "function",
+        "async": true,
+        "description": "Return search results to background.js.",
+        "parameters": []
+      },
+      
+            {
+        "name": "captureSearchResults",
+        "type": "function",
+        "async": true,
+        "description": "Gets the search results from the visible Location Bar menupopup.",
+        "parameters": []
+      }
+    ]
+  }
+]

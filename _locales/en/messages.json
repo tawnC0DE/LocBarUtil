@@ -1,0 +1,15 @@
+{
+  "extensionName": {
+    "message": "Location Bar Multiselect Utility",
+    "description": "Name of the extension."
+  },
+
+  "extensionDescription": {
+    "message": "Saves a list of current location bar search results to facilitate opening multiple links.",
+    "description": "Description of the add-on."
+  }
+}
+
+
+
+
