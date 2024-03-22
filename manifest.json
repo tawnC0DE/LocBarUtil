@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "__MSG_extensionName__",
   "description": "__MSG_extensionDescription__",
-  "version": "0.0.1",
+  "version": "0.5.0",
   "default_locale": "en",
   "browser_specific_settings": {
     "gecko": {
@@ -10,23 +10,23 @@
       "strict_min_version": "109.0"
     }
   },
-  
+
   "permissions": [
     "bookmarks"
   ],
-  
+
   "background": {
     "scripts": [
       "background.js"
     ]
   },
-  
+
   "browser_action": {
   "browser_style": true,
   "default_icon": "icon/star.svg",
   "default_title": "Location Bar Multiselect - Bookmark Results"
 },
-  
+
   "experiment_apis": {
     "experiments_urlbar": {
       "schema": "experiments/urlbar/schema.json",

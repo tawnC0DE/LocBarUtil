@@ -28,9 +28,9 @@ const handleToolbarButtonClick = async function (tab, onClickData) {  //  Shift,
   }
 }
 
-// covers profile startup, add-on install, temp install, etc.
-browser.runtime.onStartup.addListener(onStartup);
-browser.runtime.onInstalled.addListener(onStartup);
+// covers profile startup, add-on install, temp install, but *not* re-enable via AOM
+// browser.runtime.onStartup.addListener(onStartup);
+// browser.runtime.onInstalled.addListener(onStartup);
 
 // browser.runtime.onSuspend.addListener(onShutdown); // only works w/ event pages
 
@@ -43,14 +43,27 @@ async function saveResultsAsBookmarks(results) {
   if (!folder || folder.length > 1) {
     error.log("Multiselect Utility:  Folder not found, or multiple folders found. Location bar results have not been saved. Please insure one and only one folder exits for storing these results.");
   }
-  let itemsInFolder = await browser.bookmarks.getChildren(folder.id);  
+  let itemsInFolder = await browser.bookmarks.getChildren(folder.id);
   // while children would include subfolders, non-empty subfolders would not get deleted (& there shouldn't be any unless manually created).
 
   for (let item of itemsInFolder) {
     await browser.bookmarks.remove(item.id)  // .catch((err) => {console.error(err);});
-  }  
+  }
+
   for (var index = 0; index < results.urls[0].length; index++) {
+    // don't bookmark empty (undefined) urls; i.e. it would create an empty folder with no name
+    // this is mostly caused by results like 'search google for foo'
+    // OTOH, bookmarks with empty titles will just display the url instead
+    if (!results.urls[0][index]) {
+      continue;
+    }
     // console.log(index, folder.id, results.titles[0][index], results.urls[0][index]);
     await browser.bookmarks.create( {index: index, parentId:  folder.id, title: results.titles[0][index], url: results.urls[0][index] } );
-  } 
+  }
 }
+
+
+ (async function main() {
+// Detect this extension being started (via profile startup, add-on install, temp install, enabling in AOM etc.)
+  onStartup();
+})();
