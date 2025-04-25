@@ -2,12 +2,12 @@
   "manifest_version": 2,
   "name": "__MSG_extensionName__",
   "description": "__MSG_extensionDescription__",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "default_locale": "en",
   "browser_specific_settings": {
     "gecko": {
       "id": "foo@shadetreeapiary.com",
-      "strict_min_version": "109.0"
+      "strict_min_version": "136.0"
     }
   },
 
@@ -25,7 +25,15 @@
   "browser_style": true,
   "default_icon": "icon/star.svg",
   "default_title": "Location Bar Multiselect - Bookmark Results"
-},
+  },
+
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Down"
+      }
+    }
+  },
 
   "experiment_apis": {
     "experiments_urlbar": {

@@ -1,10 +1,15 @@
 // Ctrl-Shift-J to view console output from api.js; it doesn't appear in the about:debugging 'Inspect' button's console tab.
 
 "use strict";
-
+/*  older Fx versions
 XPCOMUtils.defineLazyModuleGetters(this, {
   BrowserWindowTracker: "resource:///modules/BrowserWindowTracker.jsm",
 });
+*/
+
+// updated for Fx 136+
+ChromeUtils.defineESModuleGetters(this, { BrowserWindowTracker: "resource:///modules/BrowserWindowTracker.sys.mjs"});
+
 
 var searchResults = {titles: [], urls: []};
 
@@ -15,7 +20,7 @@ this.experiments_urlbar = class extends ExtensionAPI {
     return {
       experiments: {
         urlbar:  {
-          
+
           async getResults() {
             let win = BrowserWindowTracker.getTopWindow();
             // if user clicks icon before clicking off of urlbar, urlbar blur el may not have triggered yet
@@ -30,18 +35,18 @@ this.experiments_urlbar = class extends ExtensionAPI {
             let win = BrowserWindowTracker.getTopWindow();
             let URLbarInput = win.gURLBar.view.input;
             blurListener = this.captureSearchResults;
-            URLbarInput.addEventListener('blur', blurListener);   
+            URLbarInput.addEventListener('blur', blurListener);
             console.log("listening");
           },
-          
+
           async uninitURLbarListener() {
-            console.log("uninitURLbarListener called");            
+            console.log("uninitURLbarListener called");
             let win = BrowserWindowTracker.getTopWindow();
             let URLbarInput = win.gURLBar.view.input;
             URLbarInput.removeEventListener('blur', this.captureSearchResults);
             console.log("listener removed");
-          },          
-          
+          },
+
           async captureSearchResults() {
             console.log("captureSearchResults called");
             let win = BrowserWindowTracker.getTopWindow();
@@ -52,13 +57,13 @@ this.experiments_urlbar = class extends ExtensionAPI {
               return {};
             }
             searchResults = {titles: [], urls: []};
-            var titles = [];  
-            var urls = [];            
+            var titles = [];
+            var urls = [];
             results.forEach(element => {
               titles.push(element.payload.title);
               urls.push(element.payload.url);
-            });   
-            searchResults.titles.push(titles);            
+            });
+            searchResults.titles.push(titles);
             searchResults.urls.push(urls);
             console.log(searchResults);
           }
@@ -74,6 +79,6 @@ this.experiments_urlbar = class extends ExtensionAPI {
     let win = BrowserWindowTracker.getTopWindow();
     let URLbarInput = win.gURLBar.view.input;
     URLbarInput.removeEventListener('blur', blurListener);
-    console.log("blurListener removed");    
-  } 
+    console.log("blurListener removed");
+  }
 };
