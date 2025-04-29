@@ -4,15 +4,13 @@ This is a web extension experiment add-on for Firefox created to save the result
 # Installation
 
 ## Prerequisites
-Webext experiments only work in Developer Edition or Nightly versions of Firefox and xpinstall.signatures.required must be set to false in about:config to install it for normal use (in order to survive restart of Firefox).
+Webext experiments only work in Developer Edition or Nightly versions of Firefox and xpinstall.signatures.required must be set to false in about:config. Also set the preference extensions.experiments.enabled to true (in order for extension to survive restart of Firefox).
 
 
 ## Installing
-Download the code as a zip file (On the Code tab, Click 'Code' button then click 'Download ZIP'). Change file extension to .xpi. Open the Firefox Add-ons Manager, click the gear icon, choose 'Install add-on from file...' and choose the downloaded file.
+Click 'Releases'; choose the latest release. Under 'Assets' Download the xpi file.  Open the Firefox Add-ons Manager, click the gear icon, choose 'Install add-on from file...' and choose the downloaded file.
 
 # Usage
 Currently you need to first create a folder named LocBar to store resulting bookmarks (anywhere in your bookmarks tree you deem convenient, e.g. on the Bookmarks Toolbar). There must be one and only one folder by this name.
 
-While I have occasionally used this (in various versions) myself for quite some time, it has not been widely tested, and should be considered beta quality.
-
-When typing into the urlbar, if you want to open more than one result's link, click the toolbar button to save the results to the folder named LocBar. Then open as many as desired via normal bookmark methods.
+When typing into the Location Bar, if you want to open more than one result's link, click the toolbar button (or use the Ctrl+Shift+Down-arrow shortcut)to save the results to the folder named LocBar. Then open as many as desired via normal bookmark methods.
